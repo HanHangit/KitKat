@@ -25,6 +25,16 @@ namespace KitKat
             currTime = 0;
 
             listBlock = new List<IBlock>();
+
+            int initBlock = 10;
+
+            for(int i = 0; i < initBlock; ++i)
+            {
+                
+                listBlock.Add(new SimpleBlock(textures[0], new Vector2(textures[0].Width * i, 400), 0.3f));
+            }
+
+
         }
 
         public void Update(GameTime gTime)

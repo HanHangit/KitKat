@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace KitKat
 {
@@ -11,6 +12,7 @@ namespace KitKat
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Spawner spawner;
 
         public Game1()
         {
@@ -28,6 +30,10 @@ namespace KitKat
         {
             // TODO: Add your initialization logic here
 
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.ApplyChanges();
+
             base.Initialize();
         }
 
@@ -39,6 +45,11 @@ namespace KitKat
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            Texture2D[] blockText = new Texture2D[(int)EBlock.Count];
+            blockText[0] = Content.Load<Texture2D>("LongBlock");
+
+            spawner = new Spawner(blockText);
 
             // TODO: use this.Content to load your game content here
         }
@@ -62,6 +73,8 @@ namespace KitKat
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            spawner.Update(gameTime);
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -75,6 +88,12 @@ namespace KitKat
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+
+            spriteBatch.Begin();
+            spawner.Draw(spriteBatch);
+
+
+            spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

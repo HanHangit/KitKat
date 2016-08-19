@@ -16,15 +16,16 @@ namespace KitKat
         int spawnTime;
         int currTime;
 
-        List<IBlock> listBlock;
+        public List<ICollider> listBlock { get; private set; }
+        List<Coin> CoinLlist;
 
-        public Spawner(Texture2D[] textures)
+        public Spawner(Texture2D[] textures, Texture2D[] coinTextures)
         {
             this.textures = textures;
             spawnTime = 1000;
             currTime = 0;
 
-            listBlock = new List<IBlock>();
+            listBlock = new List<ICollider>();
 
             int initBlock = 10;
 

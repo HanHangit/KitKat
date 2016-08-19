@@ -50,9 +50,11 @@ namespace KitKat
 
             Texture2D[] blockText = new Texture2D[(int)EBlock.Count];
             blockText[0] = Content.Load<Texture2D>("LongBlock");
+            Texture2D[] coinText = new Texture2D[1];
+            coinText[0] = Content.Load<Texture2D>("Coin");
             Texture2D playerText = Content.Load<Texture2D>("player");
 
-            spawner = new Spawner(blockText);
+            spawner = new Spawner(blockText, coinText);
             player = new Player(spawner, playerText, new Vector2(200, 400));
 
             // TODO: use this.Content to load your game content here

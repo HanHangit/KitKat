@@ -11,20 +11,32 @@ namespace KitKat
 {
     class Player
     {
+        Texture2D text;
+        Vector2 position;
 
-        public Player()
+        public Player(Texture2D _text, Vector2 _position)
         {
-
+            text = _text;
+            position = _position;
         }
 
         public void Update(GameTime gTime)
         {
-            
+            Vector2 move = new Vector2(0, 0);
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            {
+                move += new Vector2(-1, 0);
+            }
+            if(Keyboard.GetState().IsKeyDown(Keys.Right))
+            {
+                move += new Vector2(1, 0);
+            }
+            position += move;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
+            spriteBatch.Draw(text, position, Color.White);
         }
 
 

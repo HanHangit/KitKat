@@ -14,6 +14,8 @@ namespace KitKat
         SpriteBatch spriteBatch;
         Spawner spawner;
 
+        Player player;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -48,8 +50,10 @@ namespace KitKat
 
             Texture2D[] blockText = new Texture2D[(int)EBlock.Count];
             blockText[0] = Content.Load<Texture2D>("LongBlock");
+            Texture2D playerText = Content.Load<Texture2D>("player");
 
             spawner = new Spawner(blockText);
+            player = new Player(playerText, new Vector2(200, 400));
 
             // TODO: use this.Content to load your game content here
         }
@@ -74,7 +78,7 @@ namespace KitKat
                 Exit();
 
             spawner.Update(gameTime);
-
+            player.Update(gameTime);
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -91,7 +95,7 @@ namespace KitKat
 
             spriteBatch.Begin();
             spawner.Draw(spriteBatch);
-
+            player.Draw(spriteBatch);
 
             spriteBatch.End();
             // TODO: Add your drawing code here

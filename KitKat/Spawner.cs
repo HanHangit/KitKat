@@ -52,9 +52,9 @@ namespace KitKat
                 Random rand = new Random(System.DateTime.Now.Millisecond);
                 if (rand.Next(0, 5) == 0)
                 {
-                    Rectangle block = listBlock[listBlock.Count - 1].GetRect();
-                    Vector2 position = new Vector2(rand.Next(block.X, block.X + block.Width - coinTextures[0].Width), 
-                        block.Y - coinTextures[0].Height);
+                    ICollider block = listBlock[listBlock.Count - 1];
+                    Vector2 position = new Vector2(rand.Next((int)block.GetPosition().X, (int)block.GetPosition().X + (int)block.GetSize().X - coinTextures[0].Width), 
+                        block.GetPosition().Y - coinTextures[0].Height);
                     coinList.Add(new Coin(coinTextures[0], position, 0.3f));
                 }
             }

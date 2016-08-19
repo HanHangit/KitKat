@@ -24,7 +24,7 @@ namespace KitKat
         {
             text = _text;
             position = _position;
-            gravity = 0.3f;
+            gravity = 0.03f;
             this.spawner = spawner;
             move = Vector2.Zero;
         }
@@ -37,28 +37,29 @@ namespace KitKat
 
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                move += new Vector2(-1, 0);
+                move += new Vector2(-0.5f, 0);
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                move += new Vector2(1, 0);
+                move += new Vector2(0.5f, 0);
             }
+
+            move *= gTime.ElapsedGameTime.Milliseconds;
 
             foreach (ICollider c in spawner.listBlock)
             {
                 if (Collision.CheckCollision(this, new Vector2(move.X, 0), c, c.GetMove()))
                 {
-                    move.X = Collision.CheckCollisionVector(this, new Vector2(move.X, 0), c, c.GetMove()).X;
+                    move.X = Collision.CheckCollisionVector(this, new Vector2(move.X, 0), c, c.GetMove()).X / 2;
                 }
 
                 if (Collision.CheckCollision(this, new Vector2(0, move.Y), c, c.GetMove()))
                 {
-                    move.Y = Collision.CheckCollisionVector(this, new Vector2(0, move.Y), c, c.GetMove()).X;
+                    move.Y = Collision.CheckCollisionVector(this, new Vector2(0, move.Y), c, c.GetMove()).Y;
                 }
             }
 
-            position += new Vector2(move.X, 0);
-            position += new Vector2(0, move.Y);
+            position += new Vector2(move.X, move.Y);
 
         }
 
@@ -67,14 +68,19 @@ namespace KitKat
             spriteBatch.Draw(text, position, Color.White);
         }
 
-        public Rectangle GetRect()
-        {
-            return new Rectangle((int)position.X, (int)position.Y, text.Width, text.Height);
-        }
-
         public Vector2 GetMove()
         {
             return move;
+        }
+
+        public Vector2 GetPosition()
+        {
+            return position;
+        }
+
+        public Vector2 GetSize()
+        {
+            return new Vector2(text.Width, text.Height);
         }
     }
 }

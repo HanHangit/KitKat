@@ -38,11 +38,6 @@ namespace KitKat
             spriteBatch.Draw(text, position, Color.White);
         }
 
-        public Rectangle GetRect()
-        {
-            return new Rectangle((int)position.X, (int)position.Y, text.Width, text.Height);
-        }
-
         public void Update(GameTime gTime)
         {
 
@@ -53,6 +48,16 @@ namespace KitKat
         public Vector2 GetMove()
         {
             return move;
+        }
+
+        public Vector2 GetPosition()
+        {
+            return position;
+        }
+
+        public Vector2 GetSize()
+        {
+            return new Vector2(text.Width, text.Height);
         }
     }
 }

@@ -25,11 +25,6 @@ namespace KitKat
             move = new Vector2(speed, 0);
         }
 
-        public Rectangle GetRect()
-        {
-            return new Rectangle(position.ToPoint(), new Point(text.Width, text.Height));
-        }
-
         public void Update(GameTime gTime)
         {
             move = new Vector2(speed, 0) * gTime.ElapsedGameTime.Milliseconds;
@@ -43,7 +38,17 @@ namespace KitKat
 
         public Vector2 GetMove()
         {
-            throw new NotImplementedException();
+            return move;
+        }
+
+        public Vector2 GetPosition()
+        {
+            return position;
+        }
+
+        public Vector2 GetSize()
+        {
+            return new Vector2(text.Width, text.Height);
         }
     }
 }

@@ -17,8 +17,9 @@ namespace KitKat
         int currTime;
 
         List<IBlock> listBlock;
+        List<Coin> CoinLlist;
 
-        public Spawner(Texture2D[] textures)
+        public Spawner(Texture2D[] textures, Texture2D[] coinTextures)
         {
             this.textures = textures;
             spawnTime = 1000;

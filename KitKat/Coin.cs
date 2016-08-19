@@ -13,27 +13,29 @@ namespace KitKat
         Vector2 position;
         Texture2D text;
         int value;
+        float speed;
 
-        public Coin(Texture2D _text, Vector2 _position)
+        public Coin(Texture2D _text, Vector2 _position, float _speed)
         {
             value = 10;
             text = _text;
             position = _position;
+            speed = _speed;
         }
 
         public Rectangle GetRect()
         {
-            return new Rectangle(0, 0, 0, 0);
+            return new Rectangle(position.ToPoint(), new Point(text.Width, text.Height));
         }
 
         public void Update(GameTime gTime)
         {
-
+            position.X -= speed * gTime.ElapsedGameTime.Milliseconds;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
+            spriteBatch.Draw(text, position, Color.White);
         }
     }
 }

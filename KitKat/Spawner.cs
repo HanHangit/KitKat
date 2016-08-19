@@ -12,20 +12,23 @@ namespace KitKat
     {
 
         Texture2D[] textures;
+        Texture2D[] coinTextures;
 
         int spawnTime;
         int currTime;
 
         public List<ICollider> listBlock { get; private set; }
-        List<Coin> CoinLlist;
+        List<Coin> coinList;
 
-        public Spawner(Texture2D[] textures, Texture2D[] coinTextures)
+        public Spawner(Texture2D[] textures, Texture2D[] _coinTextures)
         {
             this.textures = textures;
+            coinTextures = _coinTextures;
             spawnTime = 1000;
             currTime = 0;
 
             listBlock = new List<ICollider>();
+            coinList = new List<Coin>();
 
             int initBlock = 10;
 
@@ -46,10 +49,20 @@ namespace KitKat
             {
                 currTime -= spawnTime;
                 listBlock.Add(new SimpleBlock(textures[(int)EBlock.SimpleBlock], new Vector2(2000, getRandomBlockHeight()), 0.3f));
+                Random rand = new Random(System.DateTime.Now.Millisecond);
+                if (rand.Next(0, 5) == 0)
+                {
+                    Rectangle block = listBlock[listBlock.Count - 1].GetRect();
+                    Vector2 position = new Vector2(rand.Next(block.X, block.X + block.Width - coinTextures[0].Width), 
+                        block.Y - coinTextures[0].Height);
+                    coinList.Add(new Coin(coinTextures[0], position, 0.3f));
+                }
             }
 
             foreach (IBlock b in listBlock)
                 b.Update(gTime);
+            foreach (Coin c in coinList)
+                c.Update(gTime);
         }
 
         float getRandomBlockHeight()
@@ -62,6 +75,8 @@ namespace KitKat
         {
             foreach (IBlock b in listBlock)
                 b.Draw(spriteBatch);
+            foreach (Coin c in coinList)
+                c.Draw(spriteBatch);
         }
 
     }

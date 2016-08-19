@@ -12,4 +12,40 @@ namespace KitKat
         Rectangle GetRect();
 
     }
+
+    class Collision
+    {
+        public static bool CheckCollision(ICollider t1, ICollider t2)
+        {
+            return RectCollision(t1.GetRect(), t2.GetRect());
+        }
+
+        public static bool CheckCollision(ICollider t1,Vector2 move1, ICollider t2, Vector2 move2)
+        {
+            return RectCollision(new Rectangle(t1.GetRect().Location + move1.ToPoint(), t1.GetRect().Size), new Rectangle(t2.GetRect().Location + move2.ToPoint(), t2.GetRect().Size));
+        }
+
+        /// <summary>
+        /// Gibt die neue Position zurück, die Object1 haben muss, damit es nicht in Objekt 2 drinne landet. 
+        /// -Es wird "geschoben".
+        /// Object1 ist das Object was geschoben werden soll.
+        /// </summary>
+        public static Vector2 CheckCollision()
+        {
+            return Vector2.Zero;
+        }
+
+        static bool RectCollision(Rectangle r1, Rectangle r2)
+        {
+            if (r1.X < r2.X + r2.Width && r1.X + r1.Width > r2.X
+                && r1.Y < r2.Y + r2.Height && r1.Y + r1.Height > r2.Y)
+                return true;
+            else
+                return false;
+        }
+
+
+    }
+
+
 }

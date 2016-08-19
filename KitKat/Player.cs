@@ -14,25 +14,35 @@ namespace KitKat
         Texture2D text;
         Vector2 position;
 
-        public Player(Texture2D _text, Vector2 _position)
+        Spawner spawner;
+
+        float gravity;
+
+        public Player(Spawner spawner, Texture2D _text, Vector2 _position)
         {
             text = _text;
             position = _position;
+            gravity = 0.3f;
+            this.spawner = spawner;
         }
 
         public void Update(GameTime gTime)
         {
             KeyboardState keyState = Keyboard.GetState();
 
-            Vector2 move = new Vector2(0, 0);
+            Vector2 move = new Vector2(0, gravity);
+
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 move += new Vector2(-1, 0);
             }
-            if(Keyboard.GetState().IsKeyDown(Keys.Right))
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 move += new Vector2(1, 0);
             }
+
+
+
             position += move;
         }
 

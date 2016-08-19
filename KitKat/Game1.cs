@@ -53,7 +53,7 @@ namespace KitKat
             Texture2D playerText = Content.Load<Texture2D>("player");
 
             spawner = new Spawner(blockText);
-            player = new Player(playerText, new Vector2(200, 400));
+            player = new Player(spawner, playerText, new Vector2(200, 400));
 
             // TODO: use this.Content to load your game content here
         }

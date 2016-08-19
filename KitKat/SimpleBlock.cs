@@ -15,7 +15,7 @@ namespace KitKat
         Count
     }
 
-    class SimpleBlock : IBlock, ICollider
+    class SimpleBlock : IBlock
     {
 
         Texture2D text;

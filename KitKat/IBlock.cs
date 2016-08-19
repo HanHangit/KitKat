@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KitKat
 {
-    interface IBlock
+    interface IBlock : ICollider
     {
         void Update(GameTime gTime);
         void Draw(SpriteBatch spriteBatch);

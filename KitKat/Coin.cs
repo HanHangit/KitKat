@@ -11,6 +11,7 @@ namespace KitKat
     class Coin : ICollider
     {
         Vector2 position;
+        Vector2 move;
         Texture2D text;
         int value;
         float speed;
@@ -21,6 +22,7 @@ namespace KitKat
             text = _text;
             position = _position;
             speed = _speed;
+            move = new Vector2(speed, 0);
         }
 
         public Rectangle GetRect()
@@ -30,7 +32,8 @@ namespace KitKat
 
         public void Update(GameTime gTime)
         {
-            position.X -= speed * gTime.ElapsedGameTime.Milliseconds;
+            move = new Vector2(speed, 0) * gTime.ElapsedGameTime.Milliseconds;
+            position += move;
         }
 
         public void Draw(SpriteBatch spriteBatch)

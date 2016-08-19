@@ -18,7 +18,7 @@ namespace KitKat
         int currTime;
 
         public List<ICollider> listBlock { get; private set; }
-        List<Coin> coinList;
+        public List<Coin> coinList { get; private set; }
 
         public Spawner(Texture2D[] textures, Texture2D[] _coinTextures)
         {

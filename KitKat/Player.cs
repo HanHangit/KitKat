@@ -50,12 +50,12 @@ namespace KitKat
             {
                 if (Collision.CheckCollision(this, new Vector2(move.X, 0), c, c.GetMove()))
                 {
-                    move.X = Collision.CheckCollisionVector(this, new Vector2(move.X, 0), c, c.GetMove()).X / 2;
+                    move.X = Collision.CheckCollisionVector(this, new Vector2(move.X, 0), c, new Vector2(c.GetMove().X,0)).X;
                 }
 
                 if (Collision.CheckCollision(this, new Vector2(0, move.Y), c, c.GetMove()))
                 {
-                    move.Y = Collision.CheckCollisionVector(this, new Vector2(0, move.Y), c, c.GetMove()).Y;
+                    move.Y = Collision.CheckCollisionVector(this, new Vector2(0, move.Y), c, new Vector2(0,c.GetMove().Y)).Y;
                 }
             }
 

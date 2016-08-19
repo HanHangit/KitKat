@@ -42,7 +42,25 @@ namespace KitKat
                 t1.GetSize(), 
                 t2.GetPosition() + move2,
                 t2.GetSize()))
-                return move2;
+            {
+                Vector2 push = Vector2.Zero;
+
+                if(t1.GetPosition().X < t2.GetPosition().X)
+                {
+                    push.X = -1 * (t1.GetPosition().X + t1.GetSize().X - t2.GetPosition().X);
+                }
+                else
+                {
+                    push.X = t2.GetPosition().X + t2.GetSize().X - t1.GetPosition().X;
+                }
+
+                if(t1.GetPosition().Y + t1.GetSize().Y + move1.Y < t2.GetPosition().Y)
+                {
+                    push.Y = move1.Y;
+                }
+
+                return push;
+            }
             else
                 return move1;
         }

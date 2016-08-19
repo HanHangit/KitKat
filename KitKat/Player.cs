@@ -22,6 +22,10 @@ namespace KitKat
 
         public void Update(GameTime gTime)
         {
+            KeyboardState keyState = Keyboard.GetState(0);
+
+            Console.WriteLine(keyState.GetPressedKeys().Length);
+
             Vector2 move = new Vector2(0, 0);
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {

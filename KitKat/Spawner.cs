@@ -44,11 +44,17 @@ namespace KitKat
             if (currTime >= spawnTime)
             {
                 currTime -= spawnTime;
-                listBlock.Add(new SimpleBlock(textures[(int)EBlock.SimpleBlock], new Vector2(2000, 400), 0.3f));
+                listBlock.Add(new SimpleBlock(textures[(int)EBlock.SimpleBlock], new Vector2(2000, getRandomBlockHeight()), 0.3f));
             }
 
             foreach (IBlock b in listBlock)
                 b.Update(gTime);
+        }
+
+        float getRandomBlockHeight()
+        {
+            Random rand = new Random();
+            return rand.Next(1, 7) * 100;
         }
 
         public void Draw(SpriteBatch spriteBatch)

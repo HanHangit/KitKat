@@ -21,6 +21,7 @@ namespace KitKat
         Texture2D text;
 
         Vector2 position;
+        Vector2 move;
 
         float speed;
 
@@ -29,6 +30,7 @@ namespace KitKat
             this.text = text;
             this.position = position;
             this.speed = speed;
+            move = new Vector2(-speed, 0);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -43,7 +45,14 @@ namespace KitKat
 
         public void Update(GameTime gTime)
         {
-            position.X -= speed * gTime.ElapsedGameTime.Milliseconds;
+
+            move = new Vector2(-speed, 0) * gTime.ElapsedGameTime.Milliseconds;
+            position += move;
+        }
+
+        public Vector2 GetMove()
+        {
+            return move;
         }
     }
 }

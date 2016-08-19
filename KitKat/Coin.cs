@@ -35,5 +35,10 @@ namespace KitKat
         {
 
         }
+
+        public Vector2 GetMove()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
